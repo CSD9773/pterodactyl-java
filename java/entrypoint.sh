@@ -38,7 +38,7 @@ LOG_PREFIX="\033[1m\033[33mconsole@minemelon~ \033[0m"
 printf "${LOG_PREFIX} java -version\n"
 java -version
 
-JAVA_MAJOR_VERSION=$(java -version 2>&1 | awk -F '"' '/version/ {print $2}' | awk -F '.' '{print $1}')
+JAVA_MAJOR_VERSION=$(java -version 2>&1 | grep -oP 'version "\K\d+')
 
 if [[ "$MALWARE_SCAN" == "1" ]]; then
     if [[ "$JAVA_MAJOR_VERSION" -lt 17 || ! -f "/MCAntiMalware.jar" ]]; then
@@ -56,10 +56,6 @@ if [[ "$MALWARE_SCAN" == "1" ]]; then
 else
     echo -e "${LOG_PREFIX} Bỏ qua quét virus..."
 fi
-
-# Print Java version
-printf "\033[1m\033[33mconsole@minemelon~ \033[0mjava -version\n"
-java -version
 
 # Convert all of the "{{VARIABLE}}" parts of the command into the expected shell
 # variable format of "${VARIABLE}" before evaluating the string and automatically
