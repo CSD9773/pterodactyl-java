@@ -40,22 +40,19 @@ java -version
 
 JAVA_MAJOR_VERSION=$(java -version 2>&1 | grep -oP 'version "\K\d+')
 
-if [[ "$MALWARE_SCAN" == "1" ]]; then
-    if [[ "$JAVA_MAJOR_VERSION" -lt 17 || ! -f "/MCAntiMalware.jar" ]]; then
-        echo -e "${LOG_PREFIX} Quét virus chỉ khả dụng với Java 17 trở lên, bỏ qua..."
-    else
-        echo -e "${LOG_PREFIX} Đang quét virus... (Quá trình này có thể mất thời gian)"
-        java -jar /MCAntiMalware.jar --scanDirectory . --singleScan true --disableAutoUpdate true
-        if [ $? -eq 0 ]; then
-            echo -e "${LOG_PREFIX} Quét virus thành công"
-        else
-            echo -e "${LOG_PREFIX} Quét virus thất bại"
-            exit 1
-        fi
-    fi
+if [[ "$JAVA_MAJOR_VERSION" -lt 17 || ! -f "/MCAntiMalware.jar" ]]; then
+    echo -e "${LOG_PREFIX} Quét virus chỉ khả dụng với Java 17 trở lên, bỏ qua..."
 else
-    echo -e "${LOG_PREFIX} Bỏ qua quét virus..."
+    echo -e "${LOG_PREFIX} Đang quét virus... (Quá trình này có thể mất thời gian)"
+    java -jar /MCAntiMalware.jar --scanDirectory . --singleScan true --disableAutoUpdate true
+    if [ $? -eq 0 ]; then
+        echo -e "${LOG_PREFIX} Quét virus thành công"
+    else
+        echo -e "${LOG_PREFIX} Quét virus thất bại"
+        exit 1
+    fi
 fi
+
 
 # Convert all of the "{{VARIABLE}}" parts of the command into the expected shell
 # variable format of "${VARIABLE}" before evaluating the string and automatically
