@@ -5,7 +5,7 @@ LABEL       author="CSD" maintainer="csd@minemelon.net"
 LABEL       org.opencontainers.image.source="https://github.com/CSD9773/pterodactyl-java"
 LABEL       org.opencontainers.image.licenses=MIT
 
-ENV LANG='vi_VN.UTF-8' LANGUAGE='vi_VN:vi' LC_ALL='vi_VN.UTF-8' TZ='Asia/Ho_Chi_Minh'
+ENV LANG='vi_VN.UTF-8' LANGUAGE='vi_VN:vi' LC_ALL='vi_VN.UTF-8' TZ='Asia/Ho_Chi_Minh' DEBIAN_FRONTEND=noninteractive
 
 RUN         apt-get update -y \
                         && apt-get install -y curl ca-certificates openssl git tar sqlite3 fontconfig tzdata locales iproute2 \
