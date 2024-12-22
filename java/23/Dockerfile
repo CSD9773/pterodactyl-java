@@ -1,4 +1,8 @@
-FROM        --platform=$TARGETOS/$TARGETARCH ubuntu:20.04
+FROM ubuntu:22.04
+
+ARG TARGETPLATFORM
+ARG GRAAL_VERSION=23.0.0
+ARG JAVA_VERSION=23
 
 LABEL       author="CSD" maintainer="csd@minemelon.net"
 
