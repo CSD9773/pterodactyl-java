@@ -30,7 +30,8 @@ export INTERNAL_IP
 
 cd /home/container || exit 1
 
+LOG_PREFIX="\033[1m\033[33mconsole@minemelon~ \033[0m"
+
 PARSED=$(echo "${STARTUP}" | sed -e 's/{{/${/g' -e 's/}}/}/g' | eval echo "$(cat -)")
 
-printf "\033[1m\033[33mconsole@minemelon~ \033[0m%s\n" "$PARSED"
 exec env ${PARSED}
