@@ -1,8 +1,7 @@
 FROM ubuntu:22.04
 
 ARG TARGETPLATFORM
-ARG GRAAL_VERSION=23.0.0
-ARG JAVA_VERSION=23
+ARG GRAAL_VERSION=23.0.1
 
 LABEL       author="CSD" maintainer="csd@minemelon.net"
 
@@ -13,8 +12,8 @@ ENV LANG='vi_VN.UTF-8' LANGUAGE='vi_VN:vi' LC_ALL='vi_VN.UTF-8' TZ='Asia/Ho_Chi_
 
 RUN apt-get update -y \
   && apt-get install -y curl ca-certificates openssl git tar sqlite3 fontconfig tzdata locales iproute2 \
-  && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
-  && locale-gen en_US.UTF-8 \
+  && echo "vi_VN.UTF-8 UTF-8" >> /etc/locale.gen \
+  && locale-gen vi_VN.UTF-8 \
   && case ${TARGETPLATFORM} in \
          "linux/amd64")  ARCH=x64  ;; \
          "linux/arm64")  ARCH=aarch64  ;; \
