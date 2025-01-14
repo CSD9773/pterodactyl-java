@@ -1,7 +1,6 @@
 FROM ubuntu:22.04
 
 ARG TARGETPLATFORM
-ARG GRAAL_VERSION=22.0.2
 
 LABEL       author="CSD" maintainer="csd@minemelon.net"
 
@@ -18,16 +17,16 @@ RUN apt-get update -y \
          "linux/amd64")  ARCH=x64  ;; \
          "linux/arm64")  ARCH=aarch64  ;; \
     esac \
-  && curl --retry 3 -Lfso /tmp/graalvm.tar.gz https://download.oracle.com/graalvm/22/latest/graalvm-jdk-22_linux-${ARCH}_bin.tar.gz \
-  && mkdir -p /opt/java/graalvm \
-  && cd /opt/java/graalvm \
-  && tar -xf /tmp/graalvm.tar.gz --strip-components=1 \
-  && export PATH="/opt/java/graalvm/bin:$PATH" \
+  && curl --retry 3 -Lfso /tmp/dragonwell.tar.gz https://github.com/dragonwell-project/dragonwell21/releases/download/dragonwell-standard-21.0.5.0.5%2B9_jdk-21.0.5-ga/Alibaba_Dragonwell_Standard_21.0.5.0.5.9_${ARCH}_linux.tar.gz \
+  && mkdir -p /opt/java/dragonwell \
+  && cd /opt/java/dragonwell \
+  && tar -xf /tmp/dragonwell.tar.gz --strip-components=1 \
+  && export PATH="/opt/java/dragonwell/bin:$PATH" \
   && rm -rf /var/lib/apt/lists/* \
-  && rm -rf /tmp/graalvm.tar.gz
+  && rm -rf /tmp/dragonwell.tar.gz
 
-ENV JAVA_HOME=/opt/java/graalvm \
-    PATH="/opt/java/graalvm/bin:$PATH"
+ENV JAVA_HOME=/opt/java/dragonwell \
+    PATH="/opt/java/dragonwell/bin:$PATH"
 
 RUN         useradd -d /home/container -m container
 
