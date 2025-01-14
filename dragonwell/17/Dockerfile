@@ -17,7 +17,7 @@ RUN apt-get update -y \
          "linux/amd64")  ARCH=x64  ;; \
          "linux/arm64")  ARCH=aarch64  ;; \
     esac \
-  && curl --retry 3 -Lfso /tmp/dragonwell.tar.gz https://github.com/dragonwell-project/dragonwell21/releases/download/dragonwell-standard-17.0.13.0.14%2B9_jdk-17.0.13-ga/Alibaba_Dragonwell_Standard_17.0.13.0.14.9_${ARCH}_linux.tar.gz \
+  && curl --retry 3 -Lfso /tmp/dragonwell.tar.gz https://github.com/dragonwell-project/dragonwell17/releases/download/dragonwell-standard-17.0.13.0.14%2B9_jdk-17.0.13-ga/Alibaba_Dragonwell_Standard_17.0.13.0.14.9_${ARCH}_linux.tar.gz \
   && mkdir -p /opt/java/dragonwell \
   && cd /opt/java/dragonwell \
   && tar -xf /tmp/dragonwell.tar.gz --strip-components=1 \
