@@ -1,13 +1,6 @@
 name: Temurin
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 0 1 * *"
-  push:
-    branches:
-      - main
-    paths:
-      - temurin/**
 jobs:
   push:
     name: "pterodactyl-java:temurin_${{ matrix.tag }}"

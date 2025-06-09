@@ -1,9 +1,9 @@
-name: Dragonwell
+name: Debian
 on:
   workflow_dispatch:
 jobs:
   push:
-    name: "pterodactyl-java:dragonwell_${{ matrix.tag }}"
+    name: "pterodactyl-java:debian_${{ matrix.tag }}"
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -12,8 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         tag:
-          - 17
-          - 21
+          - latest
     steps:
       - uses: actions/checkout@v3
       - uses: docker/setup-qemu-action@v2
@@ -27,9 +26,9 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker/build-push-action@v4
         with:
-          context: ./dragonwell
-          file: ./dragonwell/${{ matrix.tag }}/Dockerfile
+          context: ./debian
+          file: ./debian/${{ matrix.tag }}/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/csd9773/pterodactyl-java:dragonwell_${{ matrix.tag }}
+            ghcr.io/csd9773/pterodactyl-java:debian_${{ matrix.tag }}

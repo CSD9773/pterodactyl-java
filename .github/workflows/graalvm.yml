@@ -1,13 +1,6 @@
 name: GraalVM
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 0 1 * *"
-  push:
-    branches:
-      - main
-    paths:
-      - graalvm/**
 jobs:
   push:
     name: "pterodactyl-java:graalvm_${{ matrix.tag }}"
